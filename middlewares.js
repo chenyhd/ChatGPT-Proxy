@@ -1,6 +1,16 @@
-import { RATE_LIMIT, PRIOD, WHITELISTED_IPS } from "./config.js";
+import { RATE_LIMIT, PRIOD, WHITELISTED_IPS,AUTHORIZARION } from "./config.js";
 
 const rateLimit = new Map();
+
+function checkHaeader(req, res, next){
+
+    let authorization = req.headers['authorization'];
+
+    if (authorization !== AUTHORIZARION) {
+        return res.status(401).send({ error: 'Unauthorized: Invalid token' });
+    }
+    next();
+}
 
 function corsMiddleware(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -43,4 +53,4 @@ async function rateLimitMiddleware(req, res, next) {
     next();
 };
 
-export { corsMiddleware, rateLimitMiddleware }
+export { corsMiddleware, rateLimitMiddleware, checkHaeader }

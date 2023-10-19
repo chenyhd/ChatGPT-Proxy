@@ -21,3 +21,5 @@ export let OPENAI_KEYS = [
     "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 ];
+
+export let AUTHORIZARION = "xxxxxxxxxxxxxx"
